@@ -2,7 +2,7 @@ package com.example.restokenapp.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class User {
+public class GetUser {
     @SerializedName("email")
     String email;
 
@@ -18,7 +18,7 @@ public class User {
     @SerializedName("balance")
     Integer balance;
 
-    public User(String email, String username, Boolean isAdmin, String uuid, Integer balance) {
+    public GetUser(String email, String username, Boolean isAdmin, String uuid, Integer balance) {
         this.email = email;
         this.username = username;
         this.isAdmin = isAdmin;

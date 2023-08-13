@@ -6,11 +6,13 @@ Android app for campus dining 🍴 solution for college students 🎓
 
 - [x] Setup CI build with GitHub Actions
 
-- [ ] Add SignUp activity (UI + logic)
+- [x] Add SignUp activity (UI + logic)
 
 - [ ] Save token in shared preferences (remember me)
 
-- [ ] Remove code duplication
+- [ ] Remove code duplication for handling API calls
+- 
+- [ ] Instead of 2 User models for Getting user data and creating user, use 1 User model with different constructors
 
 - [ ] Add Orders activity (UI + logic + adapter)
 

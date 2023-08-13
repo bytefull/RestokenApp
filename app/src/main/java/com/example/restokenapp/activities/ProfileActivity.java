@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.example.restokenapp.R;
 import com.example.restokenapp.api.ApiClient;
-import com.example.restokenapp.models.User;
+import com.example.restokenapp.models.GetUser;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,7 +25,7 @@ public class ProfileActivity extends AppCompatActivity {
     TextView balanceTextView;
     ApiClient apiClient;
 
-    Call<User> apiCall;
+    Call<GetUser> apiCall;
     Retrofit retrofit;
     String fullToken;
 
@@ -49,28 +49,28 @@ public class ProfileActivity extends AppCompatActivity {
 
         apiCall = apiClient.getProfile(fullToken);
 
-        apiCall.enqueue(new Callback<User>() {
+        apiCall.enqueue(new Callback<GetUser>() {
             @Override
-            public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
+            public void onResponse(@NonNull Call<GetUser> call, @NonNull Response<GetUser> response) {
                 if (response.isSuccessful()) {
                     assert response.body() != null;
-                    User user = new User(
+                    GetUser getUser = new GetUser(
                             response.body().getEmail(),
                             response.body().getUsername(),
                             response.body().getAdmin(),
                             response.body().getUuid(),
                             response.body().getBalance()
                     );
-                    Log.v(TAG, "onResponse: " + user);
-                    usernameTextView.setText(user.getUsername());
-                    balanceTextView.setText(String.format(user.getBalance().toString()));
+                    Log.v(TAG, "onResponse: " + getUser);
+                    usernameTextView.setText(getUser.getUsername());
+                    balanceTextView.setText(String.format(getUser.getBalance().toString()));
                 } else {
                     Log.w(TAG, "onResponse: response is not successful");
                 }
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<GetUser> call, Throwable t) {
                 Log.e(TAG, "onFailure: " + t.getMessage());
             }
         });

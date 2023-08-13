@@ -49,6 +49,8 @@ public class LoginActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.password);
         signUpTextView = findViewById(R.id.signUp);
 
+        emailEditText.setText(getIntent().getStringExtra("email"));
+
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -90,12 +92,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        signUpTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                signUpIntent = new Intent(LoginActivity.this, SignUpActivity.class);
-                startActivity(signUpIntent);
-            }
+        signUpTextView.setOnClickListener(view -> {
+            signUpIntent = new Intent(LoginActivity.this, SignUpActivity.class);
+            startActivity(signUpIntent);
         });
     }
 }
