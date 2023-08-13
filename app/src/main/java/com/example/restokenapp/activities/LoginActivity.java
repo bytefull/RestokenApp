@@ -3,6 +3,7 @@ package com.example.restokenapp.activities;
 import static android.content.ContentValues.TAG;
 import static com.example.restokenapp.api.ApiClient.BASE_URL;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,6 +16,8 @@ import com.example.restokenapp.R;
 import com.example.restokenapp.api.ApiClient;
 import com.example.restokenapp.models.Token;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -54,8 +57,9 @@ public class LoginActivity extends AppCompatActivity {
                         passwordEditText.getText().toString());
                 apiCall.enqueue(new Callback<Token>() {
                     @Override
-                    public void onResponse(Call<Token> call, Response<Token> response) {
+                    public void onResponse(@NonNull Call<Token> call, @NonNull Response<Token> response) {
                         if (response.isSuccessful()) {
+                            assert response.body() != null;
                             fullToken = response.body().getFullToken();
                             Log.i(TAG, "onResponse: " + fullToken);
                             loginIntent = new Intent(LoginActivity.this, ProfileActivity.class);
@@ -67,11 +71,11 @@ public class LoginActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<Token> call, Throwable t) {
+                    public void onFailure(@NonNull Call<Token> call, Throwable t) {
                         Snackbar.make(findViewById(R.id.linearLayout),
                                         "Failed to login", Snackbar.LENGTH_SHORT)
                                 .show();
-                        Log.v(TAG, t.getMessage());
+                        Log.v(TAG, Objects.requireNonNull(t.getMessage()));
                     }
                 });
             } else {

@@ -3,6 +3,7 @@ package com.example.restokenapp.activities;
 import static android.content.ContentValues.TAG;
 import static com.example.restokenapp.api.ApiClient.BASE_URL;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -50,8 +51,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         apiCall.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                 if (response.isSuccessful()) {
+                    assert response.body() != null;
                     User user = new User(
                             response.body().getEmail(),
                             response.body().getUsername(),
@@ -60,8 +62,8 @@ public class ProfileActivity extends AppCompatActivity {
                             response.body().getBalance()
                     );
                     Log.v(TAG, "onResponse: " + user);
-                    usernameTextView.setText(user.getUsername().toString());
-                    balanceTextView.setText(user.getBalance().toString());
+                    usernameTextView.setText(user.getUsername());
+                    balanceTextView.setText(String.format(user.getBalance().toString()));
                 } else {
                     Log.w(TAG, "onResponse: response is not successful");
                 }
