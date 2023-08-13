@@ -11,10 +11,12 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface ApiClient {
+    public static final String BASE_URL = "http://172.30.15.113:8000/api/v1/";
+
     @FormUrlEncoded
-    @POST("api/v1/users/login")
+    @POST("users/login")
     Call<Token> login(@Field("username") String email, @Field("password") String password);
 
-    @GET("api/v1/users/me")
+    @GET("users/me")
     Call<User> getProfile(@Header("Authorization") String fullToken);
 }

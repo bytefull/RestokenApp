@@ -10,6 +10,9 @@ Android app for campus dining 🍴 solution for college students 🎓
 
 - [ ] Remove code duplication
 
-- [ ] Add Orders activity (UI + logic)
+- [ ] Add Orders activity (UI + logic + adapter)
 
 - [ ] Add navigation drawer
+
+- [ ] Follow Google architecture components (LiveData, ViewModel)
+

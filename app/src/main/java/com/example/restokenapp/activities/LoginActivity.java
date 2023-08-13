@@ -1,5 +1,8 @@
 package com.example.restokenapp.activities;
 
+import static android.content.ContentValues.TAG;
+import static com.example.restokenapp.api.ApiClient.BASE_URL;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -29,8 +32,6 @@ public class LoginActivity extends AppCompatActivity {
 
     Call<Token> apiCall;
     Retrofit retrofit;
-    private static final String BASE_URL = "http://172.30.15.113:8000/";
-    private static final String TAG = "LoginActivityTAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
