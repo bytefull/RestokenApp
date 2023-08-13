@@ -9,8 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.restokenapp.R;
 import com.example.restokenapp.api.ApiClient;
@@ -29,10 +31,11 @@ public class LoginActivity extends AppCompatActivity {
     Button loginButton;
     EditText emailEditText;
     EditText passwordEditText;
+    TextView signUpTextView;
     String fullToken;
     Intent loginIntent;
+    Intent signUpIntent;
     ApiClient apiClient;
-
     Call<Token> apiCall;
     Retrofit retrofit;
 
@@ -44,11 +47,13 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         emailEditText = findViewById(R.id.email);
         passwordEditText = findViewById(R.id.password);
+        signUpTextView = findViewById(R.id.signUp);
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
         apiClient = retrofit.create(ApiClient.class);
 
         loginButton.setOnClickListener(view -> {
@@ -82,6 +87,14 @@ public class LoginActivity extends AppCompatActivity {
                 Snackbar.make(findViewById(R.id.linearLayout),
                         "Missing field(s)",
                         Snackbar.LENGTH_SHORT).show();
+            }
+        });
+
+        signUpTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signUpIntent = new Intent(LoginActivity.this, SignUpActivity.class);
+                startActivity(signUpIntent);
             }
         });
     }
