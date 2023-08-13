@@ -1,4 +1,4 @@
-# restoken-app
+# RestokenApp
 Android app for campus dining 🍴 solution for college students 🎓
 
 
