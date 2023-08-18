@@ -71,7 +71,7 @@ public class SignUpActivity extends AppCompatActivity {
                                             "User created, login to continue", Snackbar.LENGTH_LONG)
                                     .show();
                             loginIntent = new Intent(SignUpActivity.this, LoginActivity.class);
-                            loginIntent.putExtra("email", response.body().getEmail().toString());
+                            loginIntent.putExtra("email", response.body().getEmail());
                             startActivity(loginIntent);
                         } else {
                             Log.v(TAG, "response is not successful");

@@ -1,5 +1,7 @@
 package com.example.restokenapp.models;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Token {
@@ -35,6 +37,7 @@ public class Token {
         return this.tokenType + " " + this.accessToken;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Token {" +

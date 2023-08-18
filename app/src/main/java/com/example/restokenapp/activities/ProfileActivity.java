@@ -24,7 +24,6 @@ public class ProfileActivity extends AppCompatActivity {
     TextView usernameTextView;
     TextView balanceTextView;
     ApiClient apiClient;
-
     Call<GetUser> apiCall;
     Retrofit retrofit;
     String fullToken;
@@ -70,7 +69,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<GetUser> call, Throwable t) {
+            public void onFailure(@NonNull Call<GetUser> call, @NonNull Throwable t) {
                 Log.e(TAG, "onFailure: " + t.getMessage());
             }
         });
