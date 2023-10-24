@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.password);
         signUpTextView = findViewById(R.id.signUp);
 
-        // emailEditText.setText(getIntent().getStringExtra("email"));
+        emailEditText.setText(getIntent().getStringExtra("email"));
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -68,9 +68,8 @@ public class LoginActivity extends AppCompatActivity {
                             assert response.body() != null;
                             fullToken = response.body().getFullToken();
                             Log.i(TAG, "onResponse: " + fullToken);
-                            // loginIntent = new Intent(LoginActivity.this, ProfileActivity.class);
-                            loginIntent = new Intent(LoginActivity.this, OrdersActivity.class);
-                            // loginIntent.putExtra("fullToken", fullToken);
+                            loginIntent = new Intent(LoginActivity.this, ProfileActivity.class);
+                            loginIntent.putExtra("fullToken", fullToken);
                             startActivity(loginIntent);
                         } else {
                             Log.v(TAG, "response is not successful");

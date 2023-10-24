@@ -1,9 +1,32 @@
 package com.example.restokenapp.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Order {
+    @SerializedName("amount")
     private int amount;
+    @SerializedName("id")
     private int id;
+    @SerializedName("restaurant_id")
+    private int restaurantId;
+
+    @SerializedName("created_at")
     private String date;
+
+    public int getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(int restaurantId) {
+        this.restaurantId = restaurantId;
+    }
+
+    public Order(int amount, int id, int restaurantId, String date) {
+        this.amount = amount;
+        this.id = id;
+        this.date = date;
+        this.restaurantId = restaurantId;
+    }
 
     public Order(int amount, int id, String date) {
         this.amount = amount;

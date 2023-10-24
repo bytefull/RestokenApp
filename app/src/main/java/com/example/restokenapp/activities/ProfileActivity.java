@@ -6,8 +6,11 @@ import static com.example.restokenapp.api.ApiClient.BASE_URL;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.restokenapp.R;
@@ -23,10 +26,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ProfileActivity extends AppCompatActivity {
     TextView usernameTextView;
     TextView balanceTextView;
+    Button ordersButton;
     ApiClient apiClient;
     Call<GetUser> apiCall;
     Retrofit retrofit;
     String fullToken;
+    String userId;
+    Intent ordersIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         usernameTextView = findViewById(R.id.username);
         balanceTextView = findViewById(R.id.balance);
+        ordersButton = findViewById(R.id.ordersButton);
 
         fullToken = getIntent().getStringExtra("fullToken");
         Log.i(TAG, "fullToken: " + fullToken);
@@ -53,6 +60,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onResponse(@NonNull Call<GetUser> call, @NonNull Response<GetUser> response) {
                 if (response.isSuccessful()) {
                     assert response.body() != null;
+                    userId = response.body().getUuid();
                     GetUser getUser = new GetUser(
                             response.body().getEmail(),
                             response.body().getUsername(),
@@ -71,6 +79,16 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call<GetUser> call, @NonNull Throwable t) {
                 Log.e(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+
+        ordersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ordersIntent = new Intent(ProfileActivity.this, OrdersActivity.class);
+                ordersIntent.putExtra("fullToken", fullToken);
+                ordersIntent.putExtra("userId", userId);
+                startActivity(ordersIntent);
             }
         });
     }
