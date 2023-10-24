@@ -19,7 +19,7 @@
             android:id="@+id/backButton"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:layout_marginLeft="22dp"
+            android:layout_marginStart="22dp"
             android:layout_marginTop="14dp"
             android:src="@drawable/back_icon" />
 
@@ -38,7 +38,7 @@
                 android:fontFamily="@font/segoe_ui_bold"
                 android:text="Create an account"
                 android:textColor="@color/colorTextWhite"
-                android:textSize="36dp" />
+                android:textSize="36sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -46,7 +46,7 @@
                 android:fontFamily="@font/seg_ui_semibold"
                 android:text="Let's get started"
                 android:textColor="@color/colorTextWhite"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -60,7 +60,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="48dp"
+            android:layout_marginStart="48dp"
             android:layout_marginTop="36dp"
             android:fontFamily="@font/seg_ui_semibold"
             android:text="REGISTER"
@@ -72,6 +72,27 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:orientation="vertical">
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:layout_marginRight="48dp"
+                android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/customerRadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Customer" />
+
+                    <RadioButton
+                        android:id="@+id/merchantRadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Merchant" />
+
+            </RadioGroup>
 
             <EditText
                 android:id="@+id/email"
@@ -156,12 +177,12 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/seg_ui_semibold"
                     android:text="Need Help?"
                     android:textColor="@color/colorTextBlack"
-                    android:textSize="18dp" />
+                    android:textSize="18sp" />
 
                 <Button
                     android:id="@+id/signUpButton"
@@ -173,7 +194,7 @@
                     android:text="Sign Up"
                     android:textAllCaps="false"
                     android:textColor="@color/colorButtonText"
-                    android:textSize="16dp" />
+                    android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
 

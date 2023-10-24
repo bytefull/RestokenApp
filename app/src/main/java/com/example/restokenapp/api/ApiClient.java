@@ -13,7 +13,7 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface ApiClient {
-    String BASE_URL = "http://172.30.15.113:8000/api/v1/";
+    String BASE_URL = "https://restoken.azurewebsites.net/api/v1/";
 
     @FormUrlEncoded
     @POST("users/login")
