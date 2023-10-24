@@ -12,10 +12,14 @@ public class CreateUser {
     @SerializedName("password")
     String password;
 
-    public CreateUser(String email, String username, String password) {
+    @SerializedName("role")
+    String role;
+
+    public CreateUser(String email, String username, String password, String role) {
         this.email = email;
         this.username = username;
         this.password = password;
+        this.role = role;
     }
 
     public String getEmail() {
@@ -40,5 +44,13 @@ public class CreateUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

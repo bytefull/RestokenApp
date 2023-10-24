@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 
 import com.example.restokenapp.R;
 import com.example.restokenapp.api.ApiClient;
@@ -32,6 +33,9 @@ public class SignUpActivity extends AppCompatActivity {
     EditText usernameEditText;
     EditText passwordEditText;
     EditText passwordRetypeEditText;
+    RadioGroup radioGroup;
+    int selectedRadioButtonId;
+    String role;
     Intent loginIntent;
     ApiClient apiClient;
     Call<GetUser> apiCall;
@@ -47,6 +51,7 @@ public class SignUpActivity extends AppCompatActivity {
         usernameEditText = findViewById(R.id.username);
         passwordEditText = findViewById(R.id.password);
         passwordRetypeEditText = findViewById(R.id.passwordRetype);
+        radioGroup = findViewById(R.id.radioGroup);
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -57,9 +62,16 @@ public class SignUpActivity extends AppCompatActivity {
 
         signUpButton.setOnClickListener(view -> {
             if (validateUserForm(emailEditText, usernameEditText, passwordEditText, passwordRetypeEditText)) {
+                selectedRadioButtonId = radioGroup.getCheckedRadioButtonId();
+                if (selectedRadioButtonId == R.id.customerRadioButton) {
+                    role = "customer";
+                } else if (selectedRadioButtonId == R.id.merchantRadioButton) {
+                    role = "merchant";
+                }
                 apiCall = apiClient.signUp(new CreateUser(emailEditText.getText().toString(),
                         usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString()));
+                        passwordEditText.getText().toString(),
+                        role));
 
                 apiCall.enqueue(new Callback<GetUser>() {
                     @Override
